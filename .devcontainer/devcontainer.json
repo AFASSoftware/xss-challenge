@@ -1,8 +1,8 @@
 {
   "name": "XSS Challenge - .NET Core",
-  "image": "mcr.microsoft.com/devcontainers/dotnet:8.0",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
   "features": {
-    "ghcr.io/devcontainers/features/dotnet:1": {}
+    "ghcr.io/devcontainers/features/dotnet:2.3.0": {}
   },
   "forwardPorts": [5000, 5001],
   "postCreateCommand": "dotnet restore",
