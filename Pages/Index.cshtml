@@ -1,0 +1,48 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Invoice Search - ERP System";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .search-box { margin: 20px 0; }
+        input[type="text"] { padding: 8px; width: 300px; }
+        button { padding: 8px 15px; }
+        .results { margin-top: 20px; padding: 10px; background: #f0f0f0; }
+        .invoice { padding: 10px; margin: 5px 0; background: white; }
+    </style>
+</head>
+<body>
+    <h1>ERP Invoice Search</h1>
+    
+    <form method="get" class="search-box">
+        <input type="text" name="search" placeholder="Search invoices..." value="@Model.SearchTerm" />
+        <button type="submit">Search</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.SearchTerm))
+    {
+        <div class="results">
+            <h3>Search results for: @Html.Raw(Model.SearchTerm)</h3>
+            @if (Model.Invoices.Any())
+            {
+                @foreach (var invoice in Model.Invoices)
+                {
+                    <div class="invoice">
+                        Invoice #@invoice.Id - Customer: @invoice.CustomerName - Amount: $@invoice.Amount
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No invoices found.</p>
+            }
+        </div>
+    }
+</body>
+</html>
